@@ -56,6 +56,9 @@ export default function Zrc20App() {
       <Link href="https://zksmarket.ink/" target="_blank">
         <p className="text-sky-300 underline">zksmarket</p>
       </Link>
+      <Link href="https://dune.com/polka/dollarsync" target="_blank">
+        <p className="text-sky-300 underline">Dune Index</p>
+      </Link>
     </div>
   );
 }
