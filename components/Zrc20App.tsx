@@ -3,11 +3,10 @@ import {
   ConnectWallet,
   useAddress,
   useChainId,
-  useNetworkMismatch,
   useSDK,
   useSwitchChain,
 } from "@thirdweb-dev/react";
-import { ZksyncEra } from "@thirdweb-dev/chains";
+import { Zksync } from "@thirdweb-dev/chains";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -19,13 +18,13 @@ export default function Zrc20App() {
 
   const [txHash, setTxHash] = useState<string | null>(null);
 
-  const switchToZksyncEra = async () => {
-    await switchChain(ZksyncEra.chainId);
+  const switchToZksync = async () => {
+    await switchChain(Zksync.chainId);
   };
 
   const mintZRC20Token = async () => {
-    if (chainId !== ZksyncEra.chainId) {
-      await switchToZksyncEra();
+    if (chainId !== Zksync.chainId) {
+      await switchToZksync();
     } else {
       const tx = await sdk?.wallet.sendRawTransaction({
         value: "0",
@@ -44,9 +43,7 @@ export default function Zrc20App() {
         className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
         onClick={mintZRC20Token}
       >
-        {chainId !== ZksyncEra.chainId
-          ? "Switch to ZksyncEra"
-          : "Mint ZRC-20 Token"}
+        {chainId !== Zksync.chainId ? "Switch to Zksync" : "Mint ZRC-20 Token"}
       </button>
       {txHash && (
         <Link href={`https://explorer.zksync.io/tx/${txHash}`}>
