@@ -1,8 +1,6 @@
 import Header from "@/components/Header";
 import ToolCard from "@/components/ToolCard";
 import { ToolCardPlaceholder } from "@/components/ToolCardPlaceholder";
-import WalletApp from "@/components/WalletApp";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -18,6 +16,11 @@ export default function Home() {
           title="One Click ZRC-20 Mint"
           description="Mint a ZRC-20 token with one click."
           href="/tools/zrc20"
+        />
+        <ToolCard
+          title="One Click Goerlis Mint"
+          description="Mint a Goerlis token with one click."
+          href="/tools/goerli"
         />
         <ToolCardPlaceholder />
       </div>
