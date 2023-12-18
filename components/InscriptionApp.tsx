@@ -6,7 +6,7 @@ import {
   useSDK,
 } from "@thirdweb-dev/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { utils } from "ethers";
 
 export default function InscriptionApp() {
@@ -36,10 +36,15 @@ export default function InscriptionApp() {
     setTxHash(tx?.hash ?? null);
   };
 
+  useEffect(() => {
+    setData(utils.hexlify(utils.toUtf8Bytes(stringData)));
+  }, []);
+
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="flex flex-col items-center justify-center gap-4 w-full">
       <ConnectWallet />
-      <input name="stringData" value={stringData} onChange={handleDataChange} className="text-black h-12 w-[420px] rounded px-1" />
+      <input name="stringData" value={stringData} onChange={handleDataChange} className="text-black h-12 w-full rounded px-1" />
+      <p className="overflow-hidden max-w-[300px] text-ellipsis">Hex Data: {data}</p>
       <button
         className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
         onClick={mintEVMToken}
